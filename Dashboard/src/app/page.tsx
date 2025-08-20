@@ -38,7 +38,7 @@ export default function Home() {
       id: 3,
       title: "UX/UI Designer",
       company: "Swiggy",
-      logo: "/swiggy.png",
+      logo: "/Swiggy.png",
       posted: "24h Ago",
       exp: "1-3 yr Exp",
       type: "Onsite",
