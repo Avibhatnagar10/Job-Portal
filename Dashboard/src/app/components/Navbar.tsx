@@ -18,15 +18,15 @@ export default function Navbar() {
 
   return (
     <nav className="w-full flex justify-center mt-6 px-4">
-      <div className="bg-white shadow-md rounded-full px-6 py-3 flex items-center justify-between w-full max-w-6xl">
+      <div className="bg-white shadow-md rounded-full px-8 py-3 flex items-center justify-between w-full max-w-4xl">
         {/* Logo */}
         <div className="flex items-center space-x-3">
           <img src="/cybermind.png" alt="logo" className="h-8 w-8" />
-          <span className="font-bold text-gray-700">CyberMind</span>
+          {/* <span className="font-bold text-gray-700">CyberMind</span> */}
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-10">
           {menuItems.map((item) => (
             <a
               key={item.name}
