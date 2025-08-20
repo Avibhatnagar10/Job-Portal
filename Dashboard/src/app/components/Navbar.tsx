@@ -1,52 +1,73 @@
 "use client";
 
-import { Users, MapPin, Building,  } from "lucide-react";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import CreateJobModal from "./CreateJobModal";
 
-interface JobCardProps {
-  job: {
-    id: number;
-    title: string;
-    company: string;
-    logo: string;
-    posted: string;
-    exp: string;
-    type: string;
-    salary: string;
-  };
-}
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-export default function JobCard({ job }: JobCardProps) {
+  const menuItems = [
+    { name: "Home", href: "#" },
+    { name: "Find Jobs", href: "#" },
+    { name: "Find Talents", href: "#" },
+    { name: "About us", href: "#" },
+    { name: "Testimonials", href: "#" },
+  ];
+
   return (
-    <div className="bg-white shadow-md rounded-xl p-5 relative">
-      {/* Posted Badge */}
-      <span className="absolute top-3 right-3 bg-blue-300 text-black text-xs px-3 py-1 rounded-4xl">
-        {job.posted}
-      </span>
+    <nav className="w-full flex justify-center mt-6 px-4">
+      <div className="bg-white shadow-md rounded-full px-8 py-3 flex items-center justify-between w-full max-w-4xl">
+        {/* Logo */}
+        <div className="flex items-center space-x-3">
+          <img src="/cybermind.png" alt="logo" className="h-8 w-8" />
+          {/* <span className="font-bold text-gray-700">CyberMind</span> */}
+        </div>
 
-      {/* Logo */}
-      <img src={job.logo} alt={job.company} className="h-10 w-10 mb-3 rounded-4xl" />
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-10">
+          {menuItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-gray-700 hover:text-black font-bold"
+            >
+              {item.name}
+            </a>
+          ))}
+          <button onClick={() => setIsModalOpen(true)} className="ml-6 px-5 py-2 bg-purple-800 text-white rounded-full hover:opacity-90 transition">
+            Create Jobs
+          </button>
 
-      {/* Title */}
-      <h3 className="text-lg font-semibold">{job.title}</h3>
+          <CreateJobModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        </div>
 
-      {/* Company Info */}
-      <div className="flex items-center text-gray-500 text-sm mt-1 space-x-4">
-        <span className="flex items-center"><Users size={14} className="mr-1"/> {job.exp}</span>
-        <span className="flex items-center"><MapPin size={14} className="mr-1"/> {job.type}</span>
-        <span className="flex items-center"><Building size={14} className="mr-1"/> {job.salary}</span>
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
-      {/* Description */}
-      <ul className="mt-3 text-gray-600 text-sm list-disc pl-4">
-        <li>A user-friendly interface lets you browse stunning photos and videos</li>
-        <li>Filter destinations based on interests and travel style, and create personalized</li>
-        
-      </ul>
-
-      {/* Apply Button */}
-      <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
-        Apply Now
-      </button>
-    </div>
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="md:hidden mt-2 bg-white shadow-md rounded-lg w-full max-w-4xl px-6 py-4 flex flex-col space-y-3">
+          {menuItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-gray-700 hover:text-black font-bold"
+            >
+              {item.name}
+            </a>
+          ))}
+          <button className="mt-2 px-5 py-2 bg-purple-800 text-white rounded-full hover:opacity-90 transition">
+            Create Jobs
+          </button>
+        </div>
+      )}
+    </nav>
   );
 }
