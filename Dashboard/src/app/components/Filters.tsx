@@ -104,10 +104,18 @@ export default function Filters() {
 
       {/* Salary Range */}
       <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="flex flex-col items-center bg-white shadow-md rounded-xl px-4 py-3 w-full sm:w-60 hover:shadow-lg transition-all"
+        whileHover={{ scale: 1.03 }}
+        className="flex flex-col items-center bg-white shadow-md rounded-xl px-6 py-4 w-full sm:w-64 hover:shadow-lg transition-all"
       >
-        <span className="text-gray-500 text-xs mb-1">Salary per month</span>
+        <div className="flex items-center justify-between w-full mb-2">
+          <span className="text-gray-500 text-sm font-medium">
+            Salary Per Month
+          </span>
+          <span className="text-gray-700 text-sm font-semibold">
+            ₹{(salary / 1000).toFixed(0)}k - ₹80k
+          </span>
+        </div>
+
         <input
           type="range"
           min="50000"
@@ -115,11 +123,8 @@ export default function Filters() {
           step="5000"
           value={salary}
           onChange={(e) => setSalary(Number(e.target.value))}
-          className="w-full accent-indigo-500 cursor-pointer"
+          className="w-full h-2 bg-gray-200 rounded-full  cursor-pointer"
         />
-        <span className="text-gray-700 text-sm mt-2">
-          ₹{(salary / 1000).toFixed(0)}k / month
-        </span>
       </motion.div>
     </motion.div>
   );
