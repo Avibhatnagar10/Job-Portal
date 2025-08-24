@@ -4,42 +4,35 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, MapPin, Briefcase, ChevronDown } from "lucide-react";
 
-export default function Filters() {
+export default function FilterBar() {
   const [locationOpen, setLocationOpen] = useState(false);
   const [jobTypeOpen, setJobTypeOpen] = useState(false);
   const [location, setLocation] = useState("Preferred Location");
   const [jobType, setJobType] = useState("Job Type");
-  const [salary, setSalary] = useState(50000);
+  const [salary, setSalary] = useState([50000, 80000]);
 
   const locations = ["Remote", "Delhi", "Bangalore", "Mumbai", "Hyderabad"];
   const jobTypes = ["Full-time", "Part-time", "Internship", "Freelance"];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="container mx-auto mt-2 flex flex-wrap items-center justify-center gap-4 px-4 py-4"
-    >
-      {/* Job Title Search */}
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="flex items-center bg-white shadow-md rounded-full px-4 py-2 w-full sm:w-72 transition-all hover:shadow-lg"
-      >
-        <Search className="text-gray-400 mr-2" size={20} />
+    <div className="w-full bg-white py-10 px-10 flex justify-between items-center text-gray-700 text-1lg">
+
+      {/* Search */}
+      <div className="flex items-center gap-10 flex-2 max-w-xs border-r px-4">
+        <Search className="text-gray-400" size={20} />
         <input
           type="text"
           placeholder="Search By Job Title, Role"
-          className="flex-1 outline-none text-gray-700"
+          className="flex font-medium outline-none placeholder-grey-400 "
         />
-      </motion.div>
+      </div>
 
-      {/* Location Dropdown */}
-      <div className="relative w-full sm:w-60">
+      {/* Location */}
+      <div className="relative flex-1  justify-center border-r px-4">
         <motion.div
           whileHover={{ scale: 1.05 }}
           onClick={() => setLocationOpen(!locationOpen)}
-          className="flex items-center bg-white shadow-md rounded-full px-4 py-2 w-full cursor-pointer transition-all hover:shadow-lg"
+          className="flex items-center rounded-2xl px-4 py-2 cursor-pointer transition-all "
         >
           <MapPin className="text-gray-400 mr-2" size={20} />
           <span className="text-gray-700">{location}</span>
@@ -50,7 +43,7 @@ export default function Filters() {
           <motion.ul
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute mt-2 bg-white shadow-md rounded-lg w-full overflow-hidden z-10"
+            className="absolute top-full left-0 mt-2 bg-white shadow-md rounded-lg w-full overflow-hidden z-10"
           >
             {locations.map((loc) => (
               <li
@@ -68,12 +61,12 @@ export default function Filters() {
         )}
       </div>
 
-      {/* Job Type Dropdown */}
-      <div className="relative w-full sm:w-48">
+      {/* Job Type */}
+      <div className="relative flex-1  justify-center border-r px-4">
         <motion.div
           whileHover={{ scale: 1.05 }}
           onClick={() => setJobTypeOpen(!jobTypeOpen)}
-          className="flex items-center bg-white shadow-md rounded-full px-4 py-2 w-full cursor-pointer transition-all hover:shadow-lg"
+          className="flex items-center rounded-2xl px-4 py-2 cursor-pointer transition-all "
         >
           <Briefcase className="text-gray-400 mr-2" size={20} />
           <span className="text-gray-700">{jobType}</span>
@@ -84,7 +77,7 @@ export default function Filters() {
           <motion.ul
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute mt-2 bg-white shadow-md rounded-lg w-full overflow-hidden z-10"
+            className="absolute top-full left-0 mt-2 bg-white shadow-md rounded-lg w-full overflow-hidden z-10"
           >
             {jobTypes.map((type) => (
               <li
@@ -102,30 +95,24 @@ export default function Filters() {
         )}
       </div>
 
-      {/* Salary Range */}
-      <motion.div
-        whileHover={{ scale: 1.03 }}
-        className="flex flex-col items-center bg-white shadow-md rounded-xl px-6 py-4 w-full sm:w-64 hover:shadow-lg transition-all"
-      >
-        <div className="flex items-center justify-between w-full mb-2">
-          <span className="text-gray-500 text-sm font-medium">
-            Salary Per Month
-          </span>
-          <span className="text-gray-700 text-sm font-semibold">
-            ₹{(salary / 1000).toFixed(0)}k - ₹80k
-          </span>
-        </div>
-
+      {/* Salary */}
+      <div className="flex-1 flex items-center justify-end gap-3 pl-4">
+        <span className="text-gray-500 text-sm whitespace-nowrap">
+          Salary Per Month
+        </span>
+        <span className="font-medium text-gray-700 text-sm whitespace-nowrap">
+          ₹{(salary[0] / 1000).toFixed(0)}k - ₹{(salary[1] / 1000).toFixed(0)}k
+        </span>
         <input
           type="range"
           min="50000"
           max="80000"
           step="5000"
-          value={salary}
-          onChange={(e) => setSalary(Number(e.target.value))}
-          className="w-full h-2 bg-gray-200 rounded-full  cursor-pointer"
+          value={salary[0]}
+          onChange={(e) => setSalary([Number(e.target.value), salary[1]])}
+          className="w-32 accent-black"
         />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
