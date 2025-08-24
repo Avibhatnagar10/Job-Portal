@@ -17,57 +17,61 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="w-full flex justify-center mt-6 px-4">
-      <div className="bg-white shadow-md rounded-full px-8 py-3 flex items-center justify-between w-full max-w-4xl">
-        {/* Logo */}
-        <div className="flex items-center space-x-3">
-          <img src="/cybermind.png" alt="logo" className="h-8 w-8" />
-          {/* <span className="font-bold text-gray-700">CyberMind</span> */}
-        </div>
+   <nav className="w-full flex justify-center mt-6 px-4 font-satoshi">
+  <div className="bg-white shadow-md rounded-full px-8 py-3 flex items-center justify-between w-full max-w-4xl">
+    {/* Logo */}
+    <div className="flex items-center space-x-3">
+      <img src="/cybermind.png" alt="logo" className="h-8 w-8" />
+    </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-10">
-          {menuItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-gray-700 hover:text-black font-bold"
-            >
-              {item.name}
-            </a>
-          ))}
-          <button onClick={() => setIsModalOpen(true)} className="ml-6 px-5 py-2 bg-purple-800 text-white rounded-full hover:opacity-90 transition">
-            Create Jobs
-          </button>
+    {/* Desktop Menu */}
+    <div className="hidden md:flex items-center space-x-10">
+      {menuItems.map((item) => (
+        <a
+          key={item.name}
+          href={item.href}
+          className="text-gray-700 hover:text-black font-bold"
+        >
+          {item.name}
+        </a>
+      ))}
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="ml-6 px-5 py-2 bg-gradient-to-b from-purple-300 to-purple-800 text-white rounded-full hover:opacity-90 transition"
+      >
+        Create Jobs
+      </button>
 
-          <CreateJobModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        </div>
+      <CreateJobModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </div>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
+    {/* Mobile Menu Button */}
+    <div className="md:hidden flex items-center">
+      <button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+    </div>
+  </div>
 
-      {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div className="md:hidden mt-2 bg-white shadow-md rounded-lg w-full max-w-4xl px-6 py-4 flex flex-col space-y-3">
-          {menuItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-gray-700 hover:text-black font-bold"
-            >
-              {item.name}
-            </a>
-          ))}
-          <button className="mt-2 px-5 py-2 bg-purple-800 text-white rounded-full hover:opacity-90 transition">
-            Create Jobs
-          </button>
-        </div>
-      )}
-    </nav>
+  {/* Mobile Menu Dropdown */}
+  {isOpen && (
+    <div className="md:hidden mt-2 bg-white shadow-md rounded-lg w-full max-w-4xl px-6 py-4 flex flex-col space-y-3">
+      {menuItems.map((item) => (
+        <a
+          key={item.name}
+          href={item.href}
+          className="text-gray-700 hover:text-black font-bold"
+        >
+          {item.name}
+        </a>
+      ))}
+      <button className="mt-2 px-5 py-2 bg-gradient-to-b from-purple-400 to-purple-800 text-white rounded-full hover:opacity-90 transition">
+  Create Jobs
+</button>
+
+    </div>
+  )}
+</nav>
+
   );
 }
