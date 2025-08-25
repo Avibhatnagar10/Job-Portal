@@ -13,7 +13,7 @@ export default function CreateJobModal({ isOpen, onClose }: Props) {
         <>
           {/* Blurred Background Overlay */}
           <motion.div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+            className="fixed top-0 left-0 w-screen h-screen bg-black/40 backdrop-blur-md z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -62,7 +62,7 @@ export default function CreateJobModal({ isOpen, onClose }: Props) {
                 <div className="flex flex-wrap gap-3">
                   <div className="flex-1 min-w-[150px]">
                     <label className="block text-gray-700 font-bold mb-1">
-                      Preferred Location
+                      Location
                     </label>
                     <select className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-500">
                       <option value="">Choose Location</option>
@@ -102,7 +102,7 @@ export default function CreateJobModal({ isOpen, onClose }: Props) {
                       <input
                         type="number"
                         placeholder="₹12L"
-                        className="w-26 border border-gray-300 rounded-lg p-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900"
+                        className="w-26 border  border-gray-300 rounded-lg p-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900"
                       />
                     </div>
                   </div>
@@ -159,4 +159,3 @@ export default function CreateJobModal({ isOpen, onClose }: Props) {
     </AnimatePresence>
   );
 }
-  
