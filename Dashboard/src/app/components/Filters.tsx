@@ -10,20 +10,19 @@ export default function FilterBar() {
   const [location, setLocation] = useState("Preferred Location");
   const [jobType, setJobType] = useState("Job Type");
   const [salary, setSalary] = useState([50000, 80000]);
-
   const locations = ["Remote", "Delhi", "Bangalore", "Mumbai", "Hyderabad"];
   const jobTypes = ["Full-time", "Part-time", "Internship", "Freelance"];
 
   return (
     <div className="w-full bg-white py-10 px-10 flex justify-between items-center text-gray-700 text-1lg">
-
       {/* Search */}
-      <div className="flex items-center gap-10 flex-2 max-w-xs border-r px-4">
+      <div className=" flex justify-center gap-5 flex-1 max-w-xs border-r px-4 py-2">
         <Search className="text-gray-400" size={20} />
         <input
           type="text"
           placeholder="Search By Job Title, Role"
           className="flex font-medium outline-none placeholder-grey-400 "
+          style={{ fontFamily: "'Inter', sans-serif" }}
         />
       </div>
 
